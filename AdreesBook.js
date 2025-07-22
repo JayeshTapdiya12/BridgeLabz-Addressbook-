@@ -42,9 +42,10 @@ class AddressBook {
         console.log(contact.toString());
     }
     isContact(name) {
+        // debugs
         let found = false;
         for (let i = 0; i < this.contacts.length; i++) {
-            if (this.contacts[i].fname == name) {
+            if (this.contacts[i].fname === name) {
                 console.log("founde the name ")
                 found = true;
                 return i;
@@ -83,9 +84,20 @@ class AddressBook {
 
 }
 
-const addressbook = new AddressBook();
+
+const addressBookSystem = {};
+
+let bookname = prompt("enter the book name : ");
+
+if (!addressBookSystem[bookname]) {
+    addressBookSystem[bookname] = new AddressBook();
+    console.log(`the book ${bookname} is created `);
+}
 
 
+// const addressbook = new AddressBook();
+
+const selectBook = addressBookSystem[bookname];
 
 let fname = prompt("enter the fname : ");
 let lname = prompt("enter the lname : ");
@@ -97,10 +109,12 @@ let phoneNumber = prompt("enter the phoneNumber : ");
 let email = prompt("enter the email : ");
 
 
-let contact = new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email)
 
 
-addressbook.addContact(contact);
+selectBook.addContact(new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email));
+selectBook.addContact(new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email));
+selectBook.addContact(new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email));
+
 
 let changename = prompt("what name to find : ")
 
@@ -108,7 +122,7 @@ let changename = prompt("what name to find : ")
 
 let property = prompt(" which property do you want to change fname, lname, addres, city, state, zipcode, phoneNumber, email : ");
 let changeitem = prompt(`what is the value of ${property} : `);
-addressbook.editConact(changename, property, changeitem);
+selectBook.editConact(changename, property, changeitem);
 
 changename = prompt("what name to find : ")
-addressbook.deleteContact(changename)
+selectBook.deleteContact(changename)
