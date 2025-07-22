@@ -22,9 +22,30 @@ class Contact {
         this.email = email;
 
     }
+    toString() {
+        return `${this.fname} ${this.lname}, ${this.address}, ${this.city}, ${this.state}, ${this.zipcode}, ${this.phoneNumber}, ${this.email}`;
+    }
 
 
 }
+
+
+
+class AddressBook {
+
+    constructor() {
+        this.contacts = [];
+    }
+
+    addContact(contact) {
+        this.contacts.push(contact);
+        console.log(contact.toString());
+    }
+
+}
+
+const addressbook = new AddressBook();
+
 
 
 let fname = prompt("enter the fname : ");
@@ -37,4 +58,7 @@ let phoneNumber = prompt("enter the phoneNumber : ");
 let email = prompt("enter the email : ");
 
 
+let contact = new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email)
 
+
+addressbook.addContact(contact);
