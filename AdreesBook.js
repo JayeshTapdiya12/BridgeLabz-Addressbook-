@@ -62,12 +62,23 @@ class AddressBook {
         if (contactIndex !== -1) {
             this.contacts[contactIndex][property] = change;
             console.log("Contact updated:");
-            console.log(this.contacts[contactIndex].toString());
+            console.log(this.contacts.toString());
         } else {
             console.log("Invalid property name.");
         }
+    }
 
-
+    deleteContact(name) {
+        const contactIndex = this.isContact(name);
+        if (contactIndex !== -1) {
+            this.contacts.splice(contactIndex, 1);
+            console.log("the conatct is deleteed")
+            for (let i = 0; i < this.contacts.length; i++) {
+                console.log(this.contacts[i].toString());
+            }
+        } else {
+            console.log("the contact does not exists");
+        }
     }
 
 }
@@ -98,3 +109,6 @@ let changename = prompt("what name to find : ")
 let property = prompt(" which property do you want to change fname, lname, addres, city, state, zipcode, phoneNumber, email : ");
 let changeitem = prompt(`what is the value of ${property} : `);
 addressbook.editConact(changename, property, changeitem);
+
+changename = prompt("what name to find : ")
+addressbook.deleteContact(changename)
