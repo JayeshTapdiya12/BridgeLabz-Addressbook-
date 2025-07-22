@@ -61,7 +61,10 @@ class AddressBook {
         const contactIndex = this.isContact(name);
         if (contactIndex !== -1) {
             this.contacts[contactIndex][property] = change;
+            console.log("Contact updated:");
             console.log(this.contacts[contactIndex].toString());
+        } else {
+            console.log("Invalid property name.");
         }
 
 
