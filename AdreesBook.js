@@ -41,6 +41,31 @@ class AddressBook {
         this.contacts.push(contact);
         console.log(contact.toString());
     }
+    isContact(name) {
+        let found = false;
+        for (let i = 0; i < this.contacts.length; i++) {
+            if (this.contacts[i].fname == name) {
+                console.log("founde the name ")
+                found = true;
+                return i;
+                // break;
+            }
+        }
+        if (!found) {
+            console.log("coundt find the name ")
+            return -1;
+        };
+
+    }
+    editConact(name, property, change) {
+        const contactIndex = this.isContact(name);
+        if (contactIndex !== -1) {
+            this.contacts[contactIndex][property] = change;
+            console.log(this.contacts[contactIndex].toString());
+        }
+
+
+    }
 
 }
 
@@ -62,3 +87,11 @@ let contact = new Contact(fname, lname, addres, city, state, zipcode, phoneNumbe
 
 
 addressbook.addContact(contact);
+
+let changename = prompt("what name to find : ")
+
+
+
+let property = prompt(" which property do you want to change fname, lname, addres, city, state, zipcode, phoneNumber, email : ");
+let changeitem = prompt(`what is the value of ${property} : `);
+addressbook.editConact(changename, property, changeitem);
