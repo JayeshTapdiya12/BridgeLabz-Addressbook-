@@ -105,7 +105,7 @@ class AddressBook {
 
     sortContact(value) {
         this.contacts.sort((a, b) => {
-            a[value].localeCompare(b[value]);
+            return a[value].localeCompare(b[value]);
         })
         this.contacts.forEach(contact => console.log(contact.toString()));
 
