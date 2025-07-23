@@ -163,7 +163,10 @@ for (const bookName in addressBookSystem) {
         personLiveInCityOrState.push(...fname)
     };
 }
-
+let count = 0;
 for (const name of personLiveInCityOrState) {
     console.log(name);
+    count++;
 }
+
+console.log(`the count of person live in ${property} in ${value} is ${count}`);
