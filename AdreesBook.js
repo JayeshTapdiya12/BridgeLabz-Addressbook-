@@ -93,11 +93,14 @@ class AddressBook {
     }
 
     searchByCityOrState(property, valueOfCityOrState) {
+        const match = [];
         for (let i = 0; i < this.contacts.length; i++) {
             if (this.contacts[i][property] === valueOfCityOrState) {
                 console.log(`the person name which live in this ${valueOfCityOrState} is ${this.contacts[i].fname} `);
+                match.push(this.contacts[i].fname);
             }
         }
+        return match
     }
 
 
@@ -151,6 +154,16 @@ selectBook.deleteContact(changename)
 property = prompt(" by which you want to search city, state : ");
 
 let value = prompt(`the ${property} value :`);
+
+const personLiveInCityOrState = [];
+
 for (const bookName in addressBookSystem) {
-    addressBookSystem[bookName].searchByCityOrState(property, value)
+    let fname = addressBookSystem[bookName].searchByCityOrState(property, value);
+    if (fname !== null) {
+        personLiveInCityOrState.push(...fname)
+    };
+}
+
+for (const name of personLiveInCityOrState) {
+    console.log(name);
 }
