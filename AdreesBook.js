@@ -38,14 +38,24 @@ class AddressBook {
     }
 
     addContact(contact) {
-        this.contacts.push(contact);
-        console.log(contact.toString());
+
+        const duplicate = this.contacts.find(c =>
+            c.fname.toLowerCase() === contact.fname.toLowerCase() && c.lname.toLowerCase() === contact.lname.toLowerCase()
+        )
+
+        if (duplicate) {
+            console.log("the name is already existed!!!!");
+        } else {
+            this.contacts.push(contact);
+            console.log(contact.toString());
+        }
     }
     isContact(name) {
         // debugs
         let found = false;
         for (let i = 0; i < this.contacts.length; i++) {
             if (this.contacts[i].fname === name) {
+
                 console.log("founde the name ")
                 found = true;
                 return i;
