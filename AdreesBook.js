@@ -105,7 +105,7 @@ class AddressBook {
 
     sortContact(value) {
         this.contacts.sort((a, b) => {
-            return a[value].localeCompare(b[value]);
+            return String(a[value] ?? "").localeCompare(String(b[value] ?? ""));
         })
         this.contacts.forEach(contact => console.log(contact.toString()));
 
@@ -143,8 +143,40 @@ let email = prompt("enter the email : ");
 
 
 selectBook.addContact(new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email));
+fname = prompt("enter the fname : ");
+lname = prompt("enter the lname : ");
+addres = prompt("enter the address : ");
+city = prompt("enter the city : ");
+state = prompt("enter the state : ");
+zipcode = prompt("enter the zipcode : ");
+phoneNumber = prompt("enter the phoneNumber : ");
+email = prompt("enter the email : ");
 selectBook.addContact(new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email));
-selectBook.addContact(new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email));
+
+
+bookname = prompt("enter the book name : ");
+
+
+if (!addressBookSystem[bookname]) {
+
+    addressBookSystem[bookname] = new AddressBook();
+    console.log(`the book ${bookname} is created `);
+}
+
+
+// const addressbook = new AddressBook();
+
+let selectBook2 = addressBookSystem[bookname];
+
+fname = prompt("enter the fname : ");
+lname = prompt("enter the lname : ");
+addres = prompt("enter the address : ");
+city = prompt("enter the city : ");
+state = prompt("enter the state : ");
+zipcode = prompt("enter the zipcode : ");
+phoneNumber = prompt("enter the phoneNumber : ");
+email = prompt("enter the email : ");
+selectBook2.addContact(new Contact(fname, lname, addres, city, state, zipcode, phoneNumber, email));
 
 
 let changename = prompt("what name to find : ")
@@ -153,10 +185,21 @@ let changename = prompt("what name to find : ")
 
 let property = prompt(" which property do you want to change fname, lname, addres, city, state, zipcode, phoneNumber, email : ");
 let changeitem = prompt(`what is the value of ${property} : `);
-selectBook.editConact(changename, property, changeitem);
 
-changename = prompt("what name to find : ")
-selectBook.deleteContact(changename)
+
+for (const bookName in addressBookSystem) {
+    addressBookSystem[bookName].editConact(changename, property, changeitem);
+
+}
+
+
+changename = prompt("what name to find to delter the contact : ")
+
+
+for (const bookName in addressBookSystem) {
+    addressBookSystem[bookName].deleteContact(changename)
+
+}
 
 
 property = prompt(" by which you want to search city, state : ");
@@ -186,7 +229,5 @@ property = prompt(" by which you want to sort name , city, state or zipcode : ")
 for (const bookName in addressBookSystem) {
     addressBookSystem[bookName].sortContact(property);
 }
-
-
 
 
