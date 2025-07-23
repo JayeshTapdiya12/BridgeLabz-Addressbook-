@@ -92,6 +92,16 @@ class AddressBook {
         }
     }
 
+    searchByCityOrState(property, valueOfCityOrState) {
+        for (let i = 0; i < this.contacts.length; i++) {
+            if (this.contacts[i][property] === valueOfCityOrState) {
+                console.log(`the person name which live in this ${valueOfCityOrState} is ${this.contacts[i].fname} `);
+            }
+        }
+    }
+
+
+
 }
 
 
@@ -136,3 +146,11 @@ selectBook.editConact(changename, property, changeitem);
 
 changename = prompt("what name to find : ")
 selectBook.deleteContact(changename)
+
+
+property = prompt(" by which you want to search city, state : ");
+
+let value = prompt(`the ${property} value :`);
+for (const bookName in addressBookSystem) {
+    addressBookSystem[bookName].searchByCityOrState(property, value)
+}
