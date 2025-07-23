@@ -103,6 +103,13 @@ class AddressBook {
         return match
     }
 
+    sortContact(value) {
+        this.contacts.sort((a, b) => {
+            a[value].localeCompare(b[value]);
+        })
+        this.contacts.forEach(contact => console.log(contact.toString()));
+
+    }
 
 
 }
@@ -113,6 +120,7 @@ const addressBookSystem = {};
 let bookname = prompt("enter the book name : ");
 
 if (!addressBookSystem[bookname]) {
+
     addressBookSystem[bookname] = new AddressBook();
     console.log(`the book ${bookname} is created `);
 }
@@ -170,3 +178,15 @@ for (const name of personLiveInCityOrState) {
 }
 
 console.log(`the count of person live in ${property} in ${value} is ${count}`);
+
+
+property = prompt(" by which you want to sort name , city, state or zipcode : ");
+
+
+for (const bookName in addressBookSystem) {
+    addressBookSystem[bookName].sortContact(property);
+}
+
+
+
+
